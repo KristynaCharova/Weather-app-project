@@ -4,9 +4,94 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather app</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/583b2dcdcd.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>GitHub</h1>
+    <div class="container">
+      <div class="weather-app">
+        <form id="search-form">
+          <div class="row">
+            <div class="col-8">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Type a city"
+                autocomplete="off"
+                autofocus
+                id="search-city-input"
+              />
+            </div>
+            <div class="col-2">
+              <button
+                class="btn btn-outline-secondary"
+                type="submit"
+                id="button-addon2"
+              >
+                Search
+              </button>
+            </div>
+            <div class="col-2">
+              <button
+                class="btn btn-outline-secondary"
+                id="current-location-btn"
+              >
+                📌
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-6">
+            <h1 id="city"></h1>
+            <ul class="date-description">
+              <li>
+                <span id="current-date"></span>
+              </li>
+              <li>
+                <span id="description"></span>
+              </li>
+            </ul>
+            <p>
+              <span class="temperature"> </span>
+              <span class="units">°C</span>
+            </p>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li>
+                <span class="conditions">Wind</span>
+                <span id="wind-speed"> </span>km/h
+              </li>
+              <li>
+                <span class="conditions">Min</span>
+                <span id="temp-min"> </span>°C
+              </li>
+              <li>
+                <span class="conditions">Max</span>
+                <span id="temp-max"> </span>°C
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
