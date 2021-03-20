@@ -73,3 +73,7 @@ li {
 a {
   color: #000;
 }
+
+small {
+  margin: -10px;
+}
