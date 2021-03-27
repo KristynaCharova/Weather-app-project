@@ -34,12 +34,16 @@ function displayWeatherCondition(response) {
   let dateElement = document.querySelector("#current-date");
   let iconElement = document.querySelector("#icon");
 
+  celsiusTemperature = response.data.main.temp;
+  minumumTemperature = response.data.main.temp_min;
+  maximumTemperature = response.data.main.temp_max;
+
   cityElement.innerHTML = response.data.name;
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  minElement.innerHTML = Math.round(response.data.main.temp_min);
-  maxElement.innerHTML = Math.round(response.data.main.temp_max);
+  minElement.innerHTML = Math.round(minumumTemperature);
+  maxElement.innerHTML = Math.round(maximumTemperature);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
@@ -73,11 +77,43 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-// search city variable and selectors
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".temperature");
+  let minElement = document.querySelector("#temp-min");
+  let maxElement = document.querySelector("#temp-max");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let minFahrenheitTemperature = (minumumTemperature * 9) / 5 + 32;
+  let maxFahrenheitTemperature = (maximumTemperature * 9) / 5 + 32;
+  minElement.innerHTML = Math.round(minFahrenheitTemperature);
+  maxElement.innerHTML = Math.round(maxFahrenheitTemperature);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".temperature");
+  let minElement = document.querySelector("#temp-min");
+  let maxElement = document.querySelector("#temp-max");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  minElement.innerHTML = Math.round(minumumTemperature);
+  maxElement.innerHTML = Math.round(maximumTemperature);
+}
+
+let celsiusTemperature = null;
+let minumumTemperature = null;
+let maximumTemperature = null;
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationBtn = document.querySelector("#current-location-btn");
 currentLocationBtn.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Prague");
