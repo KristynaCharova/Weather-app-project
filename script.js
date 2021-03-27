@@ -1,19 +1,46 @@
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let dayIndex = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[dayIndex];
+
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayWeatherCondition(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector(".temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector("#wind-speed").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#temp-min").innerHTML = Math.round(
-    response.data.main.temp_min
-  );
-  document.querySelector("#temp-max").innerHTML = Math.round(
-    response.data.main.temp_max
-  );
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+  console.log(response.data);
+  let cityElement = document.querySelector("#city");
+  let temperatureElement = document.querySelector(".temperature");
+  let descriptionElement = document.querySelector("#description");
+  let windElement = document.querySelector("#wind-speed");
+  let minElement = document.querySelector("#temp-min");
+  let maxElement = document.querySelector("#temp-max");
+  let dateElement = document.querySelector("#current-date");
+
+  cityElement.innerHTML = response.data.name;
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  minElement.innerHTML = Math.round(response.data.main.temp_min);
+  maxElement.innerHTML = Math.round(response.data.main.temp_max);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 function search(city) {
@@ -40,36 +67,6 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-// current time formatted
-function formatDate(date) {
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  let dayIndex = date.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[dayIndex];
-
-  return `${day} ${hours}:${minutes}`;
-}
-
-// current time variable and selectors
-let dateElement = document.querySelector("#current-date");
-let currentTime = new Date();
-dateElement.innerHTML = formatDate(currentTime);
 
 // search city variable and selectors
 let searchForm = document.querySelector("#search-form");
