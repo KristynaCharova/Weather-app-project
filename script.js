@@ -25,7 +25,6 @@ function formatDate(timestamp) {
 }
 
 function displayWeatherCondition(response) {
-  console.log(response.data);
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector(".temperature");
   let descriptionElement = document.querySelector("#description");
@@ -33,6 +32,7 @@ function displayWeatherCondition(response) {
   let minElement = document.querySelector("#temp-min");
   let maxElement = document.querySelector("#temp-max");
   let dateElement = document.querySelector("#current-date");
+  let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.name;
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
@@ -41,6 +41,11 @@ function displayWeatherCondition(response) {
   minElement.innerHTML = Math.round(response.data.main.temp_min);
   maxElement.innerHTML = Math.round(response.data.main.temp_max);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
