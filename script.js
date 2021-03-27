@@ -82,6 +82,9 @@ function displayFahrenheitTemperature(event) {
   let temperatureElement = document.querySelector(".temperature");
   let minElement = document.querySelector("#temp-min");
   let maxElement = document.querySelector("#temp-max");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   let minFahrenheitTemperature = (minumumTemperature * 9) / 5 + 32;
   let maxFahrenheitTemperature = (maximumTemperature * 9) / 5 + 32;
@@ -95,6 +98,9 @@ function displayCelsiusTemperature(event) {
   let temperatureElement = document.querySelector(".temperature");
   let minElement = document.querySelector("#temp-min");
   let maxElement = document.querySelector("#temp-max");
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   minElement.innerHTML = Math.round(minumumTemperature);
   maxElement.innerHTML = Math.round(maximumTemperature);
