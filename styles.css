@@ -42,6 +42,10 @@ li {
   margin-bottom: 10px;
 }
 
+li::first-letter {
+  text-transform: capitalize;
+}
+
 .units {
   position: relative;
   top: -40px;
@@ -72,8 +76,4 @@ li {
 
 a {
   color: #000;
-}
-
-small {
-  margin: -10px;
 }
