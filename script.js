@@ -25,10 +25,12 @@ function formatDate(timestamp) {
 }
 
 function displayWeatherCondition(response) {
+  console.log(response.data);
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector(".temperature");
   let descriptionElement = document.querySelector("#description");
   let windElement = document.querySelector("#wind-speed");
+  let humidityElement = document.querySelector("#humidity");
   let minElement = document.querySelector("#temp-min");
   let maxElement = document.querySelector("#temp-max");
   let dateElement = document.querySelector("#current-date");
@@ -42,6 +44,7 @@ function displayWeatherCondition(response) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  humidityElement.innerHTML = response.data.main.humidity;
   minElement.innerHTML = Math.round(minumumTemperature);
   maxElement.innerHTML = Math.round(maximumTemperature);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
