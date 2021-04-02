@@ -55,13 +55,8 @@ a {
   color: #000000;
 }
 
-strong {
-  font-weight: 650;
-  color: #a92c0a;
-}
-
 .units a {
-  color: #ab2e00;
+  color: #f2f2f1;
   position: relative;
   top: -25px;
   font-weight: bold;
@@ -88,18 +83,17 @@ strong {
 
 .weatrer-forecast {
   position: relative;
-  left: 220px;
-  bottom: 180px;
-  padding: 0px;
-  margin: 0px;
+  left: 230px;
+  bottom: 115px;
+  text-align: center;
+  font-size: 20px;
 }
 
-.weatrer-forecast li {
-  padding-bottom: 35px;
+.weather-forecast-temperature-max {
+  color: #f2f2f1;
 }
-
-.weatrer-forecast img {
-  padding: 0px;
+.weather-forecast-temperature-min {
+  font-weight: bold;
 }
 
 .signature {
