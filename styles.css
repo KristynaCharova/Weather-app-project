@@ -55,21 +55,12 @@ a {
   color: #000000;
 }
 
-.units a {
-  color: #f2f2f1;
+.units {
+  color: #000000;
   position: relative;
-  top: -25px;
+  top: -30px;
   font-weight: bold;
-}
-
-.units .active {
-  color: #000;
-  cursor: default;
   font-size: 25px;
-}
-
-.units .active:hover {
-  text-decoration: none;
 }
 
 .temperature {

@@ -126,9 +126,6 @@ function searchLocation(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeatherCondition);
-
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
 }
 
 function getCurrentLocation(event) {
@@ -136,49 +133,10 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".temperature");
-  let minElement = document.querySelector("#temp-min");
-  let maxElement = document.querySelector("#temp-max");
-
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let minFahrenheitTemperature = (minumumTemperature * 9) / 5 + 32;
-  let maxFahrenheitTemperature = (maximumTemperature * 9) / 5 + 32;
-  minElement.innerHTML = Math.round(minFahrenheitTemperature);
-  maxElement.innerHTML = Math.round(maxFahrenheitTemperature);
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".temperature");
-  let minElement = document.querySelector("#temp-min");
-  let maxElement = document.querySelector("#temp-max");
-
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  minElement.innerHTML = Math.round(minumumTemperature);
-  maxElement.innerHTML = Math.round(maximumTemperature);
-}
-
-let celsiusTemperature = null;
-let minumumTemperature = null;
-let maximumTemperature = null;
-
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationBtn = document.querySelector("#current-location-btn");
 currentLocationBtn.addEventListener("click", getCurrentLocation);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Prague");
